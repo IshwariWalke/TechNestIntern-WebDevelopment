@@ -1,36 +1,39 @@
-# 📝 NoteNest – Responsive Landing Page
----
+# 📘 NoteNest - Minimal Online Notepad (Landing Page)
 
-## 📱 Responsive Design
-
-The landing page adapts to different screen sizes:
-- 📱 Mobile-friendly navigation (hamburger menu)
-- 💻 Desktop-friendly layout with section spacing
-- ✨ All forms and features fully responsive
+A **responsive**, animated, and interactive landing page project built as part of the **Web Development Task**. NoteNest lets users jot down ideas quickly and revisit them with ease – all within the browser, with no login required.
 
 ---
 
-## 🧪 JavaScript Functionality
+## 🚀 Technologies Used
 
-- ✅ **Comment Form**  
-   - Validates **name** (letters only), **email** (standard format), and **comment**
-   - Stores comments to browser `localStorage`
-   - Dynamically appends comments to the DOM
-
-- ✅ **Scroll-to-Top Button**  
-   - Becomes visible after scrolling 200px
-   - Smooth scrolls to top on click
-
-- ✅ **Animation Triggering**  
-   - Adds `.visible` class to `.fade-in` elements on scroll for transitions
+- HTML5 & CSS3  
+- JavaScript (Vanilla)  
+- LocalStorage API  
+- CSS Animations & Transitions  
+- Responsive Web Design  
+- Git & GitHub  
+- VS Code
 
 ---
 
-## 🔧 Tools Used
+## 💡 Features Implemented
 
-- **HTML5** – Semantic structure  
-- **CSS3** – Styling, layout, animations (transitions, keyframes)  
-- **JavaScript (Vanilla)** – Interactivity, DOM manipulation  
-- **VS Code** – Code editor for development
+✅ **Responsive Layout**: Mobile-first and fluid using Flexbox & Media Queries  
+✅ **Sticky Navbar**: Smooth navigation with scroll-to-section links  
+✅ **Hero Section**: Animated text and CTA for first impressions  
+✅ **About & Features**: Concise descriptions with custom feature cards  
+✅ **Testimonials**: Static user reviews with styled blockquotes  
+✅ **Feedback Form**:  
+- Name, Email, and Comment inputs  
+- Real-time validation using RegEx  
+- Stores feedback using `localStorage`  
+✅ **Comments List**: Renders submitted feedback instantly on screen  
+✅ **Newsletter Section**: Collects emails for future updates  
+✅ **Scroll-to-Top Button**: Appears dynamically on scroll with smooth scroll behavior  
+✅ **Animations**: Section fade-ins, zoom effects, and interactive transitions
 
 ---
+
+## 🌐 Live Deployment
+
+🔗 **GitHub Pages**: https://IshwariWalke.github.io/TechNestIntern-WebDevelopment/Internship/Task1-Responsive-Landing-Page/  
