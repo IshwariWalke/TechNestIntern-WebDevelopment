@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOM & Form Handling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Feedback Form</h1>
+    <p>Leave your feedback and it will appear below!</p>
+  </header>
+
+  <main>
+    <form id="feedbackForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required placeholder="Enter your name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required placeholder="Enter your email">
+
+      <label for="message">Message:</label>
+      <textarea id="message" required placeholder="Your message"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <section id="commentsSection">
+      <h2>Visitor Comments</h2>
+      <ul id="commentsList"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

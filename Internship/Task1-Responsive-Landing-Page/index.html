@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NoteNest</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <img src="assets/logo.png" alt="NoteNest Logo" class="logo-img" />
+      <h1 class="logo">NoteNest</h1>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero fade-in" id="home">
+    <div class="hero-content">
+      <h2>Welcome to NoteNest</h2>
+      <p>The simplest way to write, organize, and revisit your thoughts. Anytime. Anywhere.</p>
+      <a href="#features" class="btn">See Features</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about fade-in" id="about">
+    <h2>What is NoteNest?</h2>
+    <p>NoteNest is a minimal online notepad that helps you capture thoughts instantly. Whether it's a grocery list, a class idea, or a spark of creativity — NoteNest keeps it safe and accessible in your browser.</p>
+  </section>
+
+  <!-- Features -->
+  <section class="features fade-in" id="features">
+    <h2>Why You'll Love NoteNest</h2>
+    <div class="feature-box">
+      <div class="feature">📝 Instant Notes</div>
+      <div class="feature">📱 Mobile Responsive</div>
+      <div class="feature">💾 Local Save (no login needed)</div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials fade-in" id="testimonials">
+    <h2>What Users Say</h2>
+    <div class="testimonial">
+      <blockquote>“Perfect for quick notes during meetings. Fast and distraction-free!”</blockquote>
+      <cite>– Aditi</cite>
+    </div>
+    <div class="testimonial">
+      <blockquote>“I use it daily for my study lists. Super simple and no login required!”</blockquote>
+      <cite>– Rohan</cite>
+    </div>
+  </section>
+
+  <!-- Feedback Form -->
+  <section id="feedback" class="form-section fade-in">
+    <h2>Leave a Comment</h2>
+    <form id="commentForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" required />
+
+      <label for="comment">Comment</label>
+      <textarea id="comment" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <ul id="commentsList"></ul>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact fade-in" id="contact">
+    <h2>Stay Updated ✉️</h2>
+    <p>Enter your email to get notified when NoteNest adds new features.</p>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Notify Me</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 NoteNest. Built with ❤️ using HTML, CSS, and JavaScript.</p>
+  </footer>
+
+  <!-- Scroll-to-top button -->
+  <button id="scrollTopBtn" title="Go to top">↑</button>
+
+  <!-- 💡 Comment Script (Task 3) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("commentForm");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const commentInput = document.getElementById("comment");
+      const commentsList = document.getElementById("commentsList");
+
+      // Load existing comments from localStorage
+      const loadComments = () => {
+        const saved = JSON.parse(localStorage.getItem("userComments")) || [];
+        commentsList.innerHTML = '';
+        saved.forEach(({ name, email, comment }) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${name}</strong> (${email})<br>${comment}`;
+          commentsList.appendChild(li);
+        });
+      };
+
+      // Validate form input using regex
+      const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const isValidName = (name) => /^[A-Za-z\s]+$/.test(name.trim());
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const comment = commentInput.value.trim();
+
+        if (!isValidName(name)) {
+          alert("Please enter a valid name (letters only).");
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          alert("Please enter a valid email.");
+          return;
+        }
+
+        if (comment.length < 3) {
+          alert("Comment is too short.");
+          return;
+        }
+
+        // Add new comment
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${name}</strong> (${email})<br>${comment}`;
+        commentsList.appendChild(li);
+
+        // Save to localStorage
+        const prev = JSON.parse(localStorage.getItem("userComments")) || [];
+        prev.push({ name, email, comment });
+        localStorage.setItem("userComments", JSON.stringify(prev));
+
+        form.reset();
+      });
+
+      // Scroll button logic
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      window.onscroll = function () {
+        scrollBtn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
+      };
+      scrollBtn.onclick = function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      loadComments(); // Load on page load
+    });
+  </script>
+</body>
+</html>
