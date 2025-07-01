@@ -1,0 +1,76 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Cart - E-Shop</title>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">E-Shop</h1>
+    <ul class="flex gap-6">
+      <li><a href="index.html" class="hover:underline">Home</a></li>
+      <li><a href="products.html" class="hover:underline">Products</a></li>
+      <li><a href="cart.html" class="hover:underline">Cart</a></li>
+    </ul>
+  </nav>
+
+  <!-- Cart Items -->
+  <main class="p-6 max-w-4xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">Your Cart</h2>
+  <div id="cartItems" class="space-y-4"></div>
+  <div id="cartSummary" class="mt-6 text-right text-xl font-bold"></div>
+
+  <!-- ✅ Checkout Button Inserted Below -->
+  <div class="mt-4 text-right">
+    <button onclick="checkout()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+      Checkout
+    </button>
+  </div>
+</main>
+
+  <!-- Load Shared Script -->
+  <script src="script.js"></script>
+  <script>
+    // Load products and show the cart
+    function checkout() {
+  if (cart.length === 0) {
+    alert("🛒 Your cart is empty!");
+    return;
+  }
+  alert("✅ Order placed successfully! Thank you for shopping with E-Shop.");
+  cart = [];
+  localStorage.removeItem('cart');
+  displayCart();
+}
+
+    fetchProducts(displayCart);
+  </script>
+  <!-- Footer -->
+<footer class="bg-indigo-600 text-white py-6 mt-10">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <div class="mb-4 md:mb-0">
+      <h2 class="text-xl font-bold">E-Shop</h2>
+      <p class="text-sm text-indigo-200">© 2025 All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+

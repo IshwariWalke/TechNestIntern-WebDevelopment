@@ -1,0 +1,21 @@
+{
+  "name": "E-Shop",
+  "short_name": "E-Shop",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "description": "A modern, responsive PWA e-commerce platform like Amazon/Flipkart.",
+  "icons": [
+    {
+      "src": "/Technest_internship/Internship/Task4-ECommerce-PWA-Website/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Technest_internship/Internship/Task4-ECommerce-PWA-Website/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>Product Details - E-Shop</title>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">E-Shop</h1>
+    <ul class="flex gap-6">
+      <li><a href="index.html" class="hover:underline">Home</a></li>
+      <li><a href="products.html" class="hover:underline">Products</a></li>
+      <li><a href="cart.html" class="hover:underline">Cart</a></li>
+    </ul>
+  </nav>
+
+  <!-- Product Detail -->
+  <main class="p-6 max-w-5xl mx-auto">
+    <div id="productDetails" class="bg-white rounded-xl shadow-md p-6 grid md:grid-cols-2 gap-6"></div>
+
+    <!-- Dynamic Reviews -->
+    <div class="mt-10 bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold mb-4">Customer Reviews</h3>
+      <ul id="reviewList" class="space-y-4"></ul>
+
+      <!-- Login Check -->
+      <div id="loginPrompt" class="text-center text-gray-600" style="display:none;">
+        <p class="mb-4">Please <a href="login.html" class="text-indigo-600 underline">log in</a> to leave a review.</p>
+      </div>
+
+      <!-- Review Form -->
+      <form id="reviewForm" class="mt-6 space-y-4" style="display:none;">
+        <input type="text" id="reviewerName" placeholder="Your name" required class="w-full border p-2 rounded" />
+        <select id="reviewRating" required class="w-full border p-2 rounded">
+          <option value="">Select rating</option>
+          <option value="5">★★★★★</option>
+          <option value="4">★★★★☆</option>
+          <option value="3">★★★☆☆</option>
+          <option value="2">★★☆☆☆</option>
+          <option value="1">★☆☆☆☆</option>
+        </select>
+        <textarea id="reviewText" rows="3" placeholder="Write your review..." required class="w-full border p-2 rounded"></textarea>
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Submit Review</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    const queryParams = new URLSearchParams(window.location.search);
+    const productId = queryParams.get("id");
+    const productDetails = document.getElementById("productDetails");
+    const reviewList = document.getElementById("reviewList");
+    const reviewForm = document.getElementById("reviewForm");
+    const loginPrompt = document.getElementById("loginPrompt");
+
+    function isUserLoggedIn() {
+      return !!localStorage.getItem("loggedInUser");
+    }
+
+    function loadReviews() {
+      const saved = JSON.parse(localStorage.getItem("reviews-" + productId)) || [];
+      reviewList.innerHTML = saved.map(r => `
+        <li class="border-b pb-2">
+          <p class="font-medium">${r.name} <span class="text-sm text-gray-500">· ${r.date}</span></p>
+          <p class="text-yellow-500">${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</p>
+          <p>${r.text}</p>
+        </li>
+      `).join('');
+    }
+
+    if (isUserLoggedIn()) {
+      reviewForm.style.display = "block";
+      document.getElementById("reviewerName").value = localStorage.getItem("loggedInUser");
+    } else {
+      loginPrompt.style.display = "block";
+    }
+
+    document.getElementById("reviewForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("reviewerName").value.trim();
+      const rating = parseInt(document.getElementById("reviewRating").value);
+      const text = document.getElementById("reviewText").value.trim();
+      if (!name || !rating || !text) return;
+      const review = { name, rating, text, date: new Date().toLocaleDateString() };
+      const stored = JSON.parse(localStorage.getItem("reviews-" + productId)) || [];
+      stored.unshift(review);
+      localStorage.setItem("reviews-" + productId, JSON.stringify(stored));
+      this.reset();
+      loadReviews();
+    });
+
+    fetch("data/products.json")
+      .then((res) => res.json())
+      .then((products) => {
+        const product = products.find((p) => p.id == productId);
+        if (product) {
+          let imageCarousel = `<div class="flex flex-col gap-4">
+            <div class="relative">
+              <img id="mainImage" src="${product.images[0]}" class="rounded-lg w-full h-64 object-contain bg-gray-50 transition duration-300 hover:scale-105" alt="${product.name}" />
+              <button onclick="navigateImage(-1)" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 px-2 py-1 rounded-l">◀</button>
+              <button onclick="navigateImage(1)" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 px-2 py-1 rounded-r">▶</button>
+            </div>
+            <div class="flex gap-2 overflow-x-auto">
+              ${product.images.map((img, i) => `<img src="${img}" onclick="document.getElementById('mainImage').src='${img}'" class="w-20 h-20 object-cover rounded border cursor-pointer hover:border-indigo-500 ${i === 0 ? 'border-indigo-600' : 'border-gray-300'}" />`).join("")}
+            </div>
+          </div>`;
+
+          const fullStars = Math.floor(product.rating);
+          const halfStar = product.rating % 1 >= 0.5;
+          const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+          const starHTML = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
+
+          let detailsHTML = `
+            <div>
+              <h2 class="text-3xl font-bold mb-2">${product.name}</h2>
+              <p class="text-xl text-gray-700 mb-1">₹${product.price}</p>
+              <p class="text-yellow-500 mb-1 text-lg">${starHTML} <span class="text-sm text-gray-600">(${product.reviews} reviews)</span></p>
+              <p class="text-gray-600 mb-4">${product.description}</p>
+              <button onclick="addToCart(${product.id})" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Add to Cart</button>
+            </div>
+          `;
+
+          productDetails.innerHTML = imageCarousel + detailsHTML;
+          window.productImages = product.images;
+          window.currentIndex = 0;
+        } else {
+          productDetails.innerHTML = "<p>Product not found.</p>";
+        }
+        loadReviews();
+      });
+
+    function addToCart(id) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const item = cart.find((p) => p.id === id);
+      if (item) {
+        item.quantity++;
+      } else {
+        cart.push({ id: id, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("✅ Product added to cart!");
+    }
+
+    function navigateImage(direction) {
+      if (!window.productImages) return;
+      window.currentIndex += direction;
+      if (window.currentIndex < 0) window.currentIndex = window.productImages.length - 1;
+      if (window.currentIndex >= window.productImages.length) window.currentIndex = 0;
+      document.getElementById('mainImage').src = window.productImages[window.currentIndex];
+    }
+  </script>
+  <!-- Footer -->
+<footer class="bg-indigo-600 text-white py-6 mt-10">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <div class="mb-4 md:mb-0">
+      <h2 class="text-xl font-bold">E-Shop</h2>
+      <p class="text-sm text-indigo-200">© 2025 All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

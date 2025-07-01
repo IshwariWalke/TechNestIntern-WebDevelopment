@@ -1,0 +1,207 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone Pro Max",
+    "price": 79999,
+    "description": "Flagship smartphone with triple camera setup and AMOLED display.",
+    "category": "smartphone",
+    "rating": 4.6,
+    "tags": ["bestseller", "new"],
+    "image": "assets/images/smartphone-front.jpeg",
+    "images": [
+      "assets/images/smartphone-front.jpeg",
+      "assets/images/smartphone-back.jpeg",
+      "assets/images/smartphone-side.jpeg"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Noise Cancelling Headphones",
+    "price": 12999,
+    "description": "Wireless over-ear headphones with active noise cancellation.",
+    "category": "audio",
+    "rating": 4.4,
+    "tags": ["trending"],
+    "image": "assets/images/headphone-main.jpeg",
+    "images": [
+      "assets/images/headphone-main.jpeg",
+      "assets/images/headphone-side.jpeg"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Gaming Laptop RTX 4060",
+    "price": 99999,
+    "description": "Powerful gaming laptop with Intel i7 and RTX 4060 GPU.",
+    "category": "laptop",
+    "rating": 4.7,
+    "tags": ["bestseller"],
+    "image": "assets/images/gaming-laptop.jpeg",
+    "images": [
+      "assets/images/laptop-stand.jpeg",
+      "assets/images/laptop-side.jpeg"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Smartwatch AMOLED",
+    "price": 8999,
+    "description": "Fitness smartwatch with vibrant AMOLED display.",
+    "category": "accessory",
+    "rating": 4.1,
+    "tags": ["new"],
+    "image": "assets/images/smartwatch-main.jpeg",
+    "images": [
+      "assets/images/smartwatch-main.jpeg",
+      "assets/images/smartwatch-up.jpeg"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Portable Bluetooth Speaker",
+    "price": 3499,
+    "description": "Compact waterproof speaker with strong bass.",
+    "category": "audio",
+    "rating": 4.3,
+    "tags": [],
+    "image": "assets/images/speaker.jpeg",
+    "images": [
+      "assets/images/speaker.jpeg",
+      "assets/images/speaker2.jpeg"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "4K Smart LED TV 50\"",
+    "price": 40999,
+    "description": "50-inch Ultra HD Smart TV with built-in apps and voice control.",
+    "category": "smartphone",
+    "rating": 4.5,
+    "tags": [],
+    "image": "assets/images/tv.jpeg",
+    "images": [
+      "assets/images/tv.jpeg",
+      "assets/images/tv-off.jpeg"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Mechanical Gaming Keyboard",
+    "price": 4999,
+    "description": "RGB mechanical keyboard with tactile switches.",
+    "category": "accessory",
+    "rating": 4.2,
+    "tags": ["bestseller"],
+    "image": "assets/images/keyboard.jpeg",
+    "images": [
+      "assets/images/keyboard.jpeg",
+      "assets/images/keyboard2.jpeg"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Wireless Gaming Mouse",
+    "price": 2499,
+    "description": "High precision wireless gaming mouse with 7 buttons.",
+    "category": "accessory",
+    "rating": 4.0,
+    "tags": [],
+    "image": "assets/images/mouse.jpeg",
+    "images": [
+      "assets/images/mouse.jpeg",
+      "assets/images/mouse-side.jpeg"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "DSLR Camera 24MP",
+    "price": 58999,
+    "description": "Professional DSLR with 24MP sensor and 4K video recording.",
+    "category": "smartphone",
+    "rating": 4.8,
+    "tags": ["bestseller"],
+    "image": "assets/images/camera.jpeg",
+    "images": [
+      "assets/images/camera.jpeg",
+      "assets/images/camera2.jpeg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Laptop Stand Adjustable",
+    "price": 1299,
+    "description": "Ergonomic aluminum laptop stand for desk setups.",
+    "category": "accessory",
+    "rating": 4.1,
+    "tags": [],
+    "image": "assets/images/laptop-stand.jpeg",
+    "images": [
+      "assets/images/stand2.jpeg",
+      "assets/images/stand3.jpeg"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "External SSD 1TB",
+    "price": 7999,
+    "description": "High-speed portable SSD with USB-C interface.",
+    "category": "accessory",
+    "rating": 4.6,
+    "tags": ["new"],
+    "image": "assets/images/ssd.jpeg",
+    "images": []
+  },
+  {
+    "id": 12,
+    "name": "Fitness Band Pro",
+    "price": 1999,
+    "description": "Track steps, sleep, and heart rate with this compact band.",
+    "category": "accessory",
+    "rating": 4.2,
+    "tags": [],
+    "image": "assets/images/fitness-band.jpeg",
+    "images": [
+      "assets/images/fitness-band.jpeg",
+      "assets/images/band2.jpeg"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Wireless Charging Pad",
+    "price": 1499,
+    "description": "Fast wireless charger compatible with all Qi devices.",
+    "category": "accessory",
+    "rating": 4.0,
+    "tags": [],
+    "image": "assets/images/wirelesspad.jpeg",
+    "images": []
+  },
+  {
+    "id": 14,
+    "name": "Tablet 10.4\" Wi-Fi",
+    "price": 21999,
+    "description": "Powerful tablet for media and productivity on the go.",
+    "category": "smartphone",
+    "rating": 4.3,
+    "tags": [],
+    "image": "assets/images/pad2.jpeg",
+    "images": [
+      "assets/images/pad2.jpeg",
+      "assets/images/mobile-front.jpeg"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Noise Smart Glasses",
+    "price": 4999,
+    "description": "Smart glasses with built-in mic, speakers, and voice assistant.",
+    "category": "accessory",
+    "rating": 4.2,
+    "tags": [],
+    "image": "assets/images/smartglass.jpeg",
+    "images": [
+      "assets/images/smartglass.jpeg",
+      "assets/images/smartglass2.jpeg"
+    ]
+  }
+]

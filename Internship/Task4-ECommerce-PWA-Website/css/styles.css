@@ -1,0 +1,43 @@
+/* Custom Typography */
+h1, h2, h3 {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Smooth Transitions */
+a, button {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button Custom Styling */
+button {
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.9;
+}
+
+/* Custom Background for hero or banners */
+.hero-bg {
+  background: linear-gradient(to right, #e32ed7, #4f46e5);
+  color: white;
+}
+
+/* Card Shadow Enhancement */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart UI Enhancements */
+.cart-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1rem;
+}
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+
